@@ -1,12 +1,12 @@
 {
-  "name": "refreash",
+  "name": "todolist-azure",
   "version": "1.0.0",
-  "description": "",
+  "description": "MP-1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Krzysztof Zakrzewski",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.21.8",
@@ -26,5 +26,13 @@
     "gulp-uglify": "^3.0.2",
     "postcss": "^8.4.23",
     "sass": "^1.62.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KrzysztofZakrzewski/MP-1_ToList-azure.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KrzysztofZakrzewski/MP-1_ToList-azure/issues"
+  },
+  "homepage": "https://github.com/KrzysztofZakrzewski/MP-1_ToList-azure#readme"
 }
