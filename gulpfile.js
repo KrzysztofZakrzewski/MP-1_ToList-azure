@@ -99,7 +99,7 @@ function wachForChanges(done) {
 		[paths.html, paths.sassSrc, paths.jsSrc],
 		parallel(handleKits, javaScriptCompiler, sassCompiler)
 	).on('change', reload);
-	watch([paths.imgSrc], parallel(covertImage)).on('change', reload);
+	watch([paths.imgSrc], parallel(convertImage)).on('change', reload);
 	done();
 }
 
