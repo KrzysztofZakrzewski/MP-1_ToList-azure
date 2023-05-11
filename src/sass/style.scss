@@ -5,3 +5,41 @@
 	margin: 0;
 	padding: 0;
 }
+body {
+	height: 100svh;
+	display: flex;
+	justify-content: center;
+	// align-content: center;
+	align-items: center;
+	// margin-top: 120px;
+	font-family: 'Montserrat', sans-serif;
+	// background-color: var(--light);
+}
+
+.container {
+	height: 95%;
+	width: 90%;
+	background-color: red;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	// align-content: center;
+	align-items: center;
+
+	.header {
+		position: relative;
+		height: 120px;
+		width: 100%;
+		background-color: blue;
+		// .hamburger {
+		// 	position: absolute;
+		// 	width: 60px;
+		// 	height: 60px;
+		// 	background-color: green;
+		// 	right: 10px;
+		// 	top: 50%;
+		// 	transform: translate(-50%, -50%);
+		// }
+	}
+
+}
