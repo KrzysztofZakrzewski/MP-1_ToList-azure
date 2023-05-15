@@ -7,6 +7,7 @@ const discriptionPopup = document.querySelector('.discription');
 const BurgerBtn = document.querySelector('.burger');
 let newToDo;
 let thing;
+const cell = document.querySelector('.cell');
 
 const addBtn = document.querySelector('.btn-add');
 let todoInput = document.querySelector('.todo-input');
@@ -35,6 +36,13 @@ function addNewTask() {
 	}
 }
 
+function createThinkParagraph() {
+	thing = document.createElement('p');
+	thing.classList.add('thing');
+	thing.textContent = todoInput.value;
+	newToDo.append(thing);
+}
+
 function createToolsArea() {
 	const toolsPanel = document.createElement('div');
 	toolsPanel.classList.add('tools');
@@ -59,14 +67,19 @@ function createToolsArea() {
 	newToDo.append(toolsPanel);
 }
 
-function createThinkParagraph() {
-	thing = document.createElement('p');
-	thing.classList.add('thing');
-	thing.textContent = todoInput.value;
-	newToDo.append(thing);
+// check which button in the ToDolist tools was clicked
+
+function clickCheck(e) {
+	if (e.target.matches('.complete')) {
+		const thing = e.target.closest('.cell').querySelector('.thing');
+		thing.classList.toggle('completed');
+		console.log(e.target);
+	}
 }
 
 BurgerBtn.addEventListener('click', showDiscription);
 discriptionBtn.addEventListener('click', showDiscription);
 
 addBtn.addEventListener('click', addNewTask);
+
+cell.addEventListener('click', clickCheck);

@@ -265,6 +265,13 @@ h1 {
 		}
 	}
 
+	.completed {
+		font-size: 12px;
+		text-decoration: line-through;
+		font-style: italic;
+		background-image: red;
+	}
+
 	.burger-active {
 		display: flex;
 	}
