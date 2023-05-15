@@ -122,7 +122,7 @@ h1 {
 			background-color: #f0f0f0;
 
 			.thing {
-				max-width: 160px;
+				width: 160px;
 				margin: 10px 0;
 				padding: 10px 10px;
 				// border: 1px solid rgb(183, 142, 142);
@@ -265,7 +265,7 @@ h1 {
 		}
 	}
 
-	.burger-active{
+	.burger-active {
 		display: flex;
 	}
 }
@@ -277,7 +277,7 @@ h1 {
 		.todo-list {
 			.cell {
 				.thing {
-					max-width: 260px;
+					width: 260px;
 				}
 			}
 		}
