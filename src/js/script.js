@@ -14,7 +14,9 @@ const container = document.querySelector('.container');
 let cell = document.querySelectorAll('.cell');
 let popup = document.querySelector('.popup');
 const popupInput = document.querySelector('.popup-input');
-const popupCloseBtn = document.querySelector('.cancel')
+const popupAcceptBtn = document.querySelector('.accept');
+const popupCloseBtn = document.querySelector('.cancel');
+const popupInfo = document.querySelector('.popup-info');
 
 const addBtn = document.querySelector('.btn-add');
 let todoInput = document.querySelector('.todo-input');
@@ -36,7 +38,6 @@ function main() {
 function preperDomEvents() {
 	addBtn.addEventListener('click', addNewTask);
 	cell.addEventListener('click', clickCheck);
-	
 }
 
 function addNewTask() {
@@ -91,14 +92,28 @@ function clickCheck(e) {
 		thing.classList.toggle('completed');
 		console.log(e.target);
 	} else if (e.target.matches('.edit')) {
-		editToDoTask();
+		editToDoTask(e);
 	}
 }
 
 function editToDoTask(e) {
-	taskToEdit = document.querySelector('.thing');
-	popupInput.value = taskToEdit.textContent;
+	const cell = e.target.closest('.cell');
+	const thing = cell.querySelector('.thing');
+	taskToEdit = thing;
+	popupInput.value = thing.textContent;
 	popup.style.display = 'flex';
+}
+
+function updateToDoText() {
+	if (popupInput.value !== '') {
+		thing = document.querySelector('.thing');
+		popupInput.textContent = thing.textContent;
+		taskToEdit.textContent = popupInput.value;
+		popup.style.display = 'none';
+		popupInfo.textContent = '';
+	} else {
+		popupInfo.textContent = 'Add some task or matter...';
+	}
 }
 
 const closePopupFunction = (e) => {
@@ -112,5 +127,5 @@ container.addEventListener('click', clickCheck);
 BurgerBtn.addEventListener('click', showDiscription);
 discriptionBtn.addEventListener('click', showDiscription);
 popupCloseBtn.addEventListener('click', closePopupFunction);
-
+popupAcceptBtn.addEventListener('click', updateToDoText);
 document.addEventListener('DOMContentLoaded', main);
