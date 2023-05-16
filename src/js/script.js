@@ -1,7 +1,5 @@
 // 'use strict';
 
-// const { create } = require('browser-sync');
-
 const discriptionBtn = document.querySelector('.discription-btn');
 const discriptionPopup = document.querySelector('.discription');
 const BurgerBtn = document.querySelector('.burger');
@@ -21,6 +19,7 @@ const popupInfo = document.querySelector('.popup-info');
 const addBtn = document.querySelector('.btn-add');
 let todoInput = document.querySelector('.todo-input');
 const toDoList = document.querySelector('.todo-list');
+const errorInfo = document.querySelector('.error-info');
 
 function showDiscription() {
 	// discriptionPopup.classList.toggle('burger-active')
@@ -48,8 +47,13 @@ function addNewTask() {
 		toDoList.append(newToDo);
 		createThinkParagraph();
 		createToolsArea();
+
+		todoInput.value = '';
+		errorInfo.textContent = 'Remeber about FIFO';
 		// newTodo.append(toolsPanel);
 		// newToDo.append(thing)
+	} else {
+		errorInfo.textContent = 'Enter the content of the task';
 	}
 }
 
@@ -63,7 +67,6 @@ function createThinkParagraph() {
 function createToolsArea() {
 	const toolsPanel = document.createElement('div');
 	toolsPanel.classList.add('tools');
-	// toolsPanel.style.display = 'block'
 
 	const completeBtn = document.createElement('button');
 	completeBtn.classList.add('complete', 'tools-btn');
@@ -126,7 +129,7 @@ function closePopupFunction(e) {
 }
 
 function deleteTask(e) {
-	let cellForDelete = e.target.closest('.cell').remove();
+	cellForDelete = e.target.closest('.cell').remove();
 }
 
 container.addEventListener('click', clickCheck);
