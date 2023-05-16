@@ -7,6 +7,7 @@ const BurgerBtn = document.querySelector('.burger');
 let newToDo;
 let thing;
 let taskToEdit;
+let noTaskParagraph;
 const container = document.querySelector('.container');
 
 let cell = document.querySelectorAll('.cell');
@@ -21,6 +22,8 @@ let todoInput = document.querySelector('.todo-input');
 const toDoList = document.querySelector('.todo-list');
 const errorInfo = document.querySelector('.error-info');
 
+// let noTaskParagrph  = document.querySelector('.no-task-paragrph');
+
 function showDiscription() {
 	// discriptionPopup.classList.toggle('burger-active')
 	if (discriptionPopup.style.display === 'none') {
@@ -30,8 +33,8 @@ function showDiscription() {
 	}
 }
 
-function addFifo () {
-	errorInfo.textContent = 'Remeber about FIFO'
+function addFifo() {
+	errorInfo.textContent = 'Remeber about FIFO';
 }
 
 function main() {
@@ -59,7 +62,14 @@ function addNewTask() {
 	} else {
 		errorInfo.textContent = 'Enter the content of the task';
 	}
+	
+	const noTaskParagraph = document.querySelector('.no-task-paragrph');
+	if (noTaskParagraph) {
+		noTaskParagraph.remove();
+	}
 }
+
+// function removeNoTaskParagr
 
 function createThinkParagraph() {
 	thing = document.createElement('p');
@@ -133,10 +143,22 @@ function closePopupFunction(e) {
 }
 
 function deleteTask(e) {
-	cellForDelete = e.target.closest('.cell').remove();
+	cell = e.target.closest('.cell');
+	cell.remove();
+
+	let noTaskParagrph = document.querySelector('.no-task-paragrph');
+
+	const allTask = toDoList.querySelectorAll('.cell');
+	console.log(allTask);
+	if (allTask.length === 0) {
+		noTaskParagrph = document.createElement('p');
+		noTaskParagrph.classList.add('no-task-paragrph');
+		noTaskParagrph.textContent = 'no tasks';
+		toDoList.appendChild(noTaskParagrph);
+	}
 }
 
-addFifo()
+addFifo();
 
 container.addEventListener('click', clickCheck);
 BurgerBtn.addEventListener('click', showDiscription);
