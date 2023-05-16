@@ -30,6 +30,10 @@ function showDiscription() {
 	}
 }
 
+function addFifo () {
+	errorInfo.textContent = 'Remeber about FIFO'
+}
+
 function main() {
 	preperDomEvents();
 }
@@ -131,6 +135,8 @@ function closePopupFunction(e) {
 function deleteTask(e) {
 	cellForDelete = e.target.closest('.cell').remove();
 }
+
+addFifo()
 
 container.addEventListener('click', clickCheck);
 BurgerBtn.addEventListener('click', showDiscription);
