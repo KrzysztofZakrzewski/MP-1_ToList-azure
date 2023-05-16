@@ -62,7 +62,10 @@ function addNewTask() {
 	} else {
 		errorInfo.textContent = 'Enter the content of the task';
 	}
-	
+	removeNoTaskParagraph();
+}
+
+function removeNoTaskParagraph() {
 	const noTaskParagraph = document.querySelector('.no-task-paragrph');
 	if (noTaskParagraph) {
 		noTaskParagraph.remove();
@@ -146,6 +149,11 @@ function deleteTask(e) {
 	cell = e.target.closest('.cell');
 	cell.remove();
 
+	addNoTaskParagrph()
+
+}
+
+function addNoTaskParagrph() {
 	let noTaskParagrph = document.querySelector('.no-task-paragrph');
 
 	const allTask = toDoList.querySelectorAll('.cell');
