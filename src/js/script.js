@@ -93,6 +93,8 @@ function clickCheck(e) {
 		console.log(e.target);
 	} else if (e.target.matches('.edit')) {
 		editToDoTask(e);
+	} else if (e.target.matches('.delete')) {
+		deleteTask(e);
 	}
 }
 
@@ -121,6 +123,10 @@ function closePopupFunction(e) {
 		popup.style.display = 'none';
 		popupInfo.textContent = '';
 	}
+}
+
+function deleteTask(e) {
+	let cellForDelete = e.target.closest('.cell').remove();
 }
 
 container.addEventListener('click', clickCheck);
