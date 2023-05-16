@@ -116,12 +116,12 @@ function updateToDoText() {
 	}
 }
 
-const closePopupFunction = (e) => {
+function closePopupFunction(e) {
 	if (e.target.matches('.cancel')) {
 		popup.style.display = 'none';
 		popupInfo.textContent = '';
 	}
-};
+}
 
 container.addEventListener('click', clickCheck);
 BurgerBtn.addEventListener('click', showDiscription);
