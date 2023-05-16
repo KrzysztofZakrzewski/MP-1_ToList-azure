@@ -5,9 +5,16 @@
 const discriptionBtn = document.querySelector('.discription-btn');
 const discriptionPopup = document.querySelector('.discription');
 const BurgerBtn = document.querySelector('.burger');
+
 let newToDo;
 let thing;
-const cell = document.querySelector('.cell');
+let taskToEdit;
+const container = document.querySelector('.container');
+
+let cell = document.querySelectorAll('.cell');
+let popup = document.querySelector('.popup');
+const popupInput = document.querySelector('.popup-input');
+const popupCloseBtn = document.querySelector('.cancel')
 
 const addBtn = document.querySelector('.btn-add');
 let todoInput = document.querySelector('.todo-input');
@@ -22,6 +29,16 @@ function showDiscription() {
 	}
 }
 
+function main() {
+	preperDomEvents();
+}
+
+function preperDomEvents() {
+	addBtn.addEventListener('click', addNewTask);
+	cell.addEventListener('click', clickCheck);
+	
+}
+
 function addNewTask() {
 	if (todoInput.value !== '') {
 		newToDo = document.createElement('div');
@@ -32,7 +49,6 @@ function addNewTask() {
 		createToolsArea();
 		// newTodo.append(toolsPanel);
 		// newToDo.append(thing)
-		console.log(newToDo);
 	}
 }
 
@@ -71,15 +87,30 @@ function createToolsArea() {
 
 function clickCheck(e) {
 	if (e.target.matches('.complete')) {
-		const thing = e.target.closest('.cell').querySelector('.thing');
+		let thing = e.target.closest('.cell').querySelector('.thing');
 		thing.classList.toggle('completed');
 		console.log(e.target);
+	} else if (e.target.matches('.edit')) {
+		editToDoTask();
 	}
 }
 
+function editToDoTask(e) {
+	taskToEdit = document.querySelector('.thing');
+	popupInput.value = taskToEdit.textContent;
+	popup.style.display = 'flex';
+}
+
+const closePopupFunction = (e) => {
+	if (e.target.matches('.cancel')) {
+		popup.style.display = 'none';
+		popupInfo.textContent = '';
+	}
+};
+
+container.addEventListener('click', clickCheck);
 BurgerBtn.addEventListener('click', showDiscription);
 discriptionBtn.addEventListener('click', showDiscription);
+popupCloseBtn.addEventListener('click', closePopupFunction);
 
-addBtn.addEventListener('click', addNewTask);
-
-cell.addEventListener('click', clickCheck);
+document.addEventListener('DOMContentLoaded', main);
