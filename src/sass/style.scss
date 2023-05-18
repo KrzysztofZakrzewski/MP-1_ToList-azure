@@ -235,7 +235,7 @@ h1 {
 			margin: 0 0 15px 0;
 		}
 
-		.bicmac-box{
+		.hero-paragraph-box {
 			position: absolute;
 			width: 100%;
 			height: 100%;
@@ -249,14 +249,13 @@ h1 {
 			align-items: center;
 			// transform: translate(-50%, -50%);
 
-			.big-mac {
+			.hero-paragraph {
 				margin-top: 100px;
 				opacity: 0.25;
 				font-size: 700px;
 				z-index: -1;
 			}
 		}
-
 
 		// p {
 		// 	padding: 3px;
