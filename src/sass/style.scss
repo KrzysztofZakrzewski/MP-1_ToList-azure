@@ -17,25 +17,29 @@ h1 {
 	padding: 10px 0;
 }
 
+.btn {
+	cursor: pointer;
+}
+
 .container {
 	position: relative;
 	height: 95%;
 	width: 85%;
-	box-shadow: 7px 7px 21px -5px rgba(66, 68, 90, 1);
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
 	align-items: center;
 	border-radius: 10px;
+	box-shadow: 7px 7px 21px -5px rgba(66, 68, 90, 1);
 	overflow: scroll;
 	overflow-x: hidden;
 
 	.menu {
+		width: 100%;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
-		width: 100%;
 
 		.menu-btn {
 			margin-left: 20px;
@@ -43,11 +47,12 @@ h1 {
 			border: none;
 			border-radius: 5px;
 		}
+
 		.burger {
 			padding: 0;
+			margin-left: auto;
 			background-color: #b84e5a;
 			font-size: 30px;
-			margin-left: auto;
 		}
 	}
 
@@ -69,7 +74,7 @@ h1 {
 		.interface {
 			width: 100%;
 			display: flex;
-			justify-content: space-around;
+			justify-content: center;
 			.todo-input {
 				width: 100%;
 				padding: 10px 20px;
@@ -87,7 +92,6 @@ h1 {
 	}
 
 	.todo-list {
-		// height: 100px;
 		padding: 20px 0;
 		width: 100%;
 		display: flex;
@@ -131,6 +135,7 @@ h1 {
 				background-color: #fff;
 				overflow: hidden;
 			}
+
 			.tools {
 				.tools-btn {
 					padding: 10px 5px;
@@ -145,14 +150,12 @@ h1 {
 
 	.popup {
 		display: none;
-		// justify-content: center;
-		// align-items: center;
 		width: 82%;
 		// height: 300px;
+		position: fixed;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		flex-direction: column;
-		position: fixed;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
@@ -164,8 +167,8 @@ h1 {
 
 		.popup-body {
 			display: flex;
-			justify-content: center;
 			flex-direction: column;
+			justify-content: center;
 			align-items: center;
 			flex-wrap: wrap;
 			width: 90%;
@@ -175,12 +178,13 @@ h1 {
 				margin-bottom: 20px;
 				color: #fff;
 			}
+
 			.popup-input {
 				width: 100%;
 				padding: 10px 20px;
+				margin: 10px 0;
 				border: none;
 				border-radius: 5px;
-				margin: 10px 0;
 			}
 
 			.popup-btn-holder {
@@ -190,8 +194,8 @@ h1 {
 				justify-content: space-around;
 
 				.popup-btn {
-					padding: 10px 10px;
 					margin: 10px 0;
+					padding: 10px 10px;
 					border: none;
 					border-radius: 5px;
 					text-transform: uppercase;
@@ -203,35 +207,62 @@ h1 {
 	}
 
 	.discription {
+		// position: relative;
+		position: fixed;
 		display: none;
+		top: 50%;
+		left: 50%;
+		width: 82%;
+		// height: 400px;
+		padding: 10px 10px;
 		justify-content: center;
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
-		position: fixed;
-		padding: 10px 10px;
-		width: 82%;
-		// height: 400px;
-		top: 50%;
-		left: 50%;
-		border-radius: 10px;
-		border: 3px solid #b84e5a;
-		transform: translate(-50%, -50%);
 		background-color: #f0f0f0;
+		border: 3px solid #b84e5a;
+		border-radius: 10px;
+		transform: translate(-50%, -50%);
+		overflow: scroll;
+		overflow-x: hidden;
+		z-index: 0;
 
-		// p {
-		// 	padding: 3px;
-		// }
+		h3 {
+			margin: 20px;
+		}
+
+		:nth-child(5) {
+			margin: 0 0 15px 0;
+		}
+
+		.hero-paragraph-box {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			inset: 0;
+			margin: auto;
+			display: flex;
+			justify-content: center;
+			align-content: center;
+			align-items: center;
+
+			.hero-paragraph {
+				margin-top: 100px;
+				opacity: 0.25;
+				font-size: 700px;
+				z-index: -1;
+			}
+		}
 
 		.discription-body {
 			margin: 10px 0;
+			width: 90%;
 			display: flex;
 			justify-content: center;
 			flex-direction: column;
 			text-align: left;
 			flex-wrap: wrap;
-			width: 90%;
-			// border: 1px solid green;
+			z-index: 0;
 
 			p {
 				padding: 5px 5px 0 5px;
@@ -250,9 +281,13 @@ h1 {
 				display: flex;
 				justify-content: end;
 
+				// .btn{
+				// 	cursor: pointer;
+				// }
+
 				.discription-btn {
-					padding: 10px 30px;
 					margin: 10px 0 0 10px;
+					padding: 10px 30px;
 					color: #f0f0f0;
 					background-color: #b84e5a;
 					border: none;
