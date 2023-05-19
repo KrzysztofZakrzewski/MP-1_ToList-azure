@@ -181,6 +181,10 @@ function saveDataFromParagrafs() {
 
 	paragrafs.forEach((paragraf) => {
 		const content = paragraf.textContent;
+		const item = {
+			content: content,
+			completed: false,
+		};
 		data.push(content);
 	});
 
@@ -205,6 +209,7 @@ function createJSONFile(data, fileName) {
 }
 
 function loadDataFromJSON() {
+	deleteTask(e);
 	const fileInput = document.getElementById('jsonFileInput');
 	const file = fileInput.files[0];
 
@@ -219,6 +224,14 @@ function loadDataFromJSON() {
 	}
 }
 
+function deleteAllTasks() {
+	const allTastksToDelete = toDoList.querySelectorAll('.cell');
+	if (allTastksToDelete.length !== 0) {
+		allTastksToDelete.forEach((task) => task.remove());
+	}
+}
+
+// deleteAllTasks();
 addFifo();
 
 container.addEventListener('click', clickCheck);
