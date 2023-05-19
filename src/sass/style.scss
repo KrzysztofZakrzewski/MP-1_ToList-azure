@@ -262,6 +262,7 @@ h1 {
 			flex-direction: column;
 			text-align: left;
 			flex-wrap: wrap;
+			z-index: 0;
 
 			p {
 				padding: 5px 5px 0 5px;
@@ -279,6 +280,10 @@ h1 {
 				margin: 20px 0px 20px 0px;
 				display: flex;
 				justify-content: end;
+
+				// .btn{
+				// 	cursor: pointer;
+				// }
 
 				.discription-btn {
 					margin: 10px 0 0 10px;
