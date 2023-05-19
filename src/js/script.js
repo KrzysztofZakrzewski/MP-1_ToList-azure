@@ -185,7 +185,7 @@ function saveDataFromParagrafs() {
 			content: content,
 			completed: false,
 		};
-		data.push(content);
+		data.push(item);
 	});
 
 	const jsonData = JSON.stringify(data);
@@ -209,7 +209,7 @@ function createJSONFile(data, fileName) {
 }
 
 function loadDataFromJSON() {
-	deleteTask(e);
+	deleteAllTasks();
 	const fileInput = document.getElementById('jsonFileInput');
 	const file = fileInput.files[0];
 
@@ -224,6 +224,34 @@ function loadDataFromJSON() {
 	}
 }
 
+function buildToDoList(data) {
+	const toDoList = document.querySelector('toDoList');
+
+	// Wyczyść istniejące zadania
+	// toDoList.innerHTML = '';
+
+	// Twórz nowe zadania na podstawie danych
+	data.forEach((task) => {
+		// Tworzenie elementów listy zadań
+		const newTask = document.createElement('div');
+		newTask.classList.add('task');
+
+		const content = document.createElement('p');
+		content.textContent = task.content;
+
+		const completed = document.createElement('input');
+		completed.type = 'checkbox';
+		completed.checked = task.completed;
+
+		// Dodawanie elementów do zadania
+		newTask.appendChild(content);
+		newTask.appendChild(completed);
+
+		// Dodawanie zadania do listy
+		toDoList.appendChild(newTask);
+	});
+}
+
 function deleteAllTasks() {
 	const allTastksToDelete = toDoList.querySelectorAll('.cell');
 	if (allTastksToDelete.length !== 0) {
@@ -231,7 +259,6 @@ function deleteAllTasks() {
 	}
 }
 
-// deleteAllTasks();
 addFifo();
 
 container.addEventListener('click', clickCheck);
@@ -243,7 +270,7 @@ popupAcceptBtn.addEventListener('click', updateToDoText);
 menuLoadPopupBtn.addEventListener('click', toggleMenuLoadPopup);
 saveData.addEventListener('click', saveDataFromParagrafs);
 loadDataPopupBtn.addEventListener('click', loadDataFromJSON);
-loadDataPopupBtn.addEventListener('click', toggleMenuLoadPopup);
+// loadDataPopupBtn.addEventListener('click', toggleMenuLoadPopup);
 closeDataPopupBtn.addEventListener('click', toggleMenuLoadPopup);
 
 document.addEventListener('DOMContentLoaded', main);
