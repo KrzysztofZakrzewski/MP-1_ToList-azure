@@ -3,6 +3,12 @@
 const discriptionBtn = document.querySelector('.discription-btn');
 const discriptionPopup = document.querySelector('.discription');
 const BurgerBtn = document.querySelector('.burger');
+const menuLoadPopupBtn = document.querySelector('.load');
+
+const saveData = document.querySelector('.save');
+const loadPopup = document.querySelector('.load-popup');
+const loadDataPopupBtn = document.querySelector('.load-data-popup-btn');
+const closeDataPopupBtn = document.querySelector('.close-data-popup-btn');
 
 let newToDo;
 let thing;
@@ -165,6 +171,54 @@ function addNoTaskParagrph() {
 	}
 }
 
+function toggleMenuLoadPopup() {
+	loadPopup.classList.toggle('load-active');
+}
+
+function saveDataFromParagrafs() {
+	const paragrafs = document.querySelectorAll('.thing');
+	const data = [];
+
+	paragrafs.forEach((paragraf) => {
+		const content = paragraf.textContent;
+		data.push(content);
+	});
+
+	const jsonData = JSON.stringify(data);
+	createJSONFile(jsonData, 'azure.json');
+}
+
+function createJSONFile(data, fileName) {
+	const jsonContent = JSON.stringify(data);
+	const blob = new Blob([jsonContent], { type: 'application/json' });
+	const url = URL.createObjectURL(blob);
+
+	const link = document.createElement('a');
+	link.href = url;
+	link.download = fileName;
+
+	document.body.appendChild(link);
+	link.click();
+	document.body.removeChild(link);
+
+	URL.revokeObjectURL(url);
+}
+
+function loadDataFromJSON() {
+	const fileInput = document.getElementById('jsonFileInput');
+	const file = fileInput.files[0];
+
+	if (file) {
+		const reader = new FileReader();
+		reader.onload = function (event) {
+			const jsonData = event.target.result;
+			const data = JSON.parse(jsonData);
+			buildToDoList(data);
+		};
+		reader.readAsText(file);
+	}
+}
+
 addFifo();
 
 container.addEventListener('click', clickCheck);
@@ -172,4 +226,11 @@ BurgerBtn.addEventListener('click', showDiscription);
 discriptionBtn.addEventListener('click', showDiscription);
 popupCloseBtn.addEventListener('click', closePopupFunction);
 popupAcceptBtn.addEventListener('click', updateToDoText);
+
+menuLoadPopupBtn.addEventListener('click', toggleMenuLoadPopup);
+saveData.addEventListener('click', saveDataFromParagrafs);
+loadDataPopupBtn.addEventListener('click', loadDataFromJSON);
+loadDataPopupBtn.addEventListener('click', toggleMenuLoadPopup);
+closeDataPopupBtn.addEventListener('click', toggleMenuLoadPopup);
+
 document.addEventListener('DOMContentLoaded', main);

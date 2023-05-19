@@ -16,6 +16,8 @@
             <div class="menu">
                 <h1>ToDo List</h1>
                 <button class="save menu-btn btn">Save</button>
+                <button class="load menu-btn btn">Load</button>
+
                 <button class="burger menu-btn btn">🍔</button>
             </div>
             <div class="interface">
@@ -53,10 +55,10 @@
                     <button class="delete tools-btn btn">❌</button>
                 </div>
             </div>
-       
+
         </div>
 
-    
+
 
 
         <div class="popup">
@@ -64,17 +66,26 @@
             <div class="popup-body">
                 <p class="popup-info"></p>
                 <input type="text" class="popup-input" placeholder="Type new content ...">
-
                 <div class="popup-btn-holder">
                     <button class="popup-btn accept btn">Confirm</button>
                     <button class="popup-btn cancel btn">Cancel</button>
                 </div>
+            </div>
+        </div>
 
+        <div class="load-popup">
+            <h3>choose a file</h3>
+            <input class="inpul-loader" type="file" id="jsonFileInput" placeholder="">
+            <div class="load-pupup-btnholder">
+
+
+                <button class="btn load-data-popup-btn" onclick="loadDataFromJSON()">Load</button>
+                <button class="btn close-data-popup-btn" onclick="loadDataFromJSON()">Close</button>
             </div>
         </div>
 
 
-        <div class="discription burger-active">
+        <div class="discription">
             <h3>Dicription</h3>
             <div class="hero-paragraph-box">
                 <p class="hero-paragraph">🍔</p>
@@ -89,9 +100,9 @@
                 <p><button>✅</button> button marks the matter or task as completed</p>
                 <p><button style="color: #13bc1b;">EDIT</button> button marks the matter or task as completed</p>
                 <p><button>❌</button> button deletes the matter or task</p>
-                
-                
-                
+
+
+
 
                 <div class="discription-btn-holder">
                     <button class="discription-btn close btn">Close</button>
@@ -102,6 +113,7 @@
     </div>
 
     <script src="dist/js/script.mini.js"></script>
+    <!-- <script  src="dist/js/data.mini.js"></script> -->
 </body>
 
 </html>
