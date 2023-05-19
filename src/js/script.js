@@ -3,6 +3,7 @@
 const discriptionBtn = document.querySelector('.discription-btn');
 const discriptionPopup = document.querySelector('.discription');
 const BurgerBtn = document.querySelector('.burger');
+const discriptionCloseBtn = document.querySelector('.close');
 
 let newToDo;
 let thing;
@@ -149,8 +150,7 @@ function deleteTask(e) {
 	cell = e.target.closest('.cell');
 	cell.remove();
 
-	addNoTaskParagrph()
-
+	addNoTaskParagrph();
 }
 
 function addNoTaskParagrph() {
@@ -171,6 +171,8 @@ addFifo();
 container.addEventListener('click', clickCheck);
 BurgerBtn.addEventListener('click', showDiscription);
 discriptionBtn.addEventListener('click', showDiscription);
+discriptionBtn.addEventListener('click', showDiscription);
 popupCloseBtn.addEventListener('click', closePopupFunction);
 popupAcceptBtn.addEventListener('click', updateToDoText);
+
 document.addEventListener('DOMContentLoaded', main);
