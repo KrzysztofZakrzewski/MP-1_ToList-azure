@@ -149,8 +149,7 @@ function deleteTask(e) {
 	cell = e.target.closest('.cell');
 	cell.remove();
 
-	addNoTaskParagrph()
-
+	addNoTaskParagrph();
 }
 
 function addNoTaskParagrph() {
