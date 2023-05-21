@@ -13,7 +13,7 @@ const closeDataPopupBtn = document.querySelector('.close-data-popup-btn');
 let newToDo;
 let thing;
 let taskToEdit;
-let noTaskParagraph;
+// let noTaskParagraph;
 const container = document.querySelector('.container');
 
 let cell = document.querySelectorAll('.cell');
@@ -28,7 +28,7 @@ let todoInput = document.querySelector('.todo-input');
 const toDoList = document.querySelector('.todo-list');
 const errorInfo = document.querySelector('.error-info');
 
-// let noTaskParagrph  = document.querySelector('.no-task-paragrph');
+let noTaskParagrph  = document.querySelector('.no-task-paragrph');
 
 function showDiscription() {
 	// discriptionPopup.classList.toggle('burger-active')
@@ -231,6 +231,7 @@ function loadDataFromJSON() {
   
   function createHTMLFromJsonData(data) {
 	const todoList = document.querySelector('.todo-list');
+	
 	deleteAllTasks()
   
 	data.tasks.forEach(task => {
@@ -267,6 +268,7 @@ function loadDataFromJSON() {
 	  todoList.appendChild(cell);
 	});
 	toggleMenuLoadPopup()
+	removeNoTaskParagraph()
   }
 
 
