@@ -13,7 +13,7 @@ const closeDataPopupBtn = document.querySelector('.close-data-popup-btn');
 let newToDo;
 let thing;
 let taskToEdit;
-// let noTaskParagraph;
+let noTaskParagraph;
 const container = document.querySelector('.container');
 
 let cell = document.querySelectorAll('.cell');
@@ -28,7 +28,7 @@ let todoInput = document.querySelector('.todo-input');
 const toDoList = document.querySelector('.todo-list');
 const errorInfo = document.querySelector('.error-info');
 
-let noTaskParagrph  = document.querySelector('.no-task-paragrph');
+// let noTaskParagrph  = document.querySelector('.no-task-paragrph');
 
 function showDiscription() {
 	// discriptionPopup.classList.toggle('burger-active')
@@ -50,6 +50,7 @@ function main() {
 function preperDomEvents() {
 	addBtn.addEventListener('click', addNewTask);
 	cell.addEventListener('click', clickCheck);
+	loadDataPopupBtn.addEventListener('click', fetchJsonFile);
 }
 
 function addNewTask() {
@@ -204,7 +205,7 @@ function createJsonWithThingData() {
 
 	let jsonData = JSON.stringify(data);
 
-	let fileName = 'moja_todo_lista.json';
+	let fileName = 'azure_todo_list.json';
 
 	let downloadLink = document.createElement('a');
 	downloadLink.href =
@@ -217,60 +218,57 @@ function createJsonWithThingData() {
 function loadDataFromJSON() {
 	const fileInput = document.getElementById('loadToDoListFromJsonData');
 	const file = fileInput.files[0];
-  
-	if (file) {
-	  const reader = new FileReader();
-	  reader.onload = function (e) {
-		const jsonContent = e.target.result;
-		const data = JSON.parse(jsonContent);
-		createHTMLFromJsonData(data);
-	  };
-	  reader.readAsText(file);
-	}
-  }
-  
-  function createHTMLFromJsonData(data) {
-	const todoList = document.querySelector('.todo-list');
-	
-	deleteAllTasks()
-  
-	data.tasks.forEach(task => {
-	  const cell = document.createElement('div');
-	  cell.classList.add('cell');
-	  cell.setAttribute('custom-id', task.id);
-  
-	  const thing = document.createElement('p');
-	  thing.classList.add('thing');
-	  thing.textContent = task.content;
-  
-	  const tools = document.createElement('div');
-	  tools.classList.add('tools');
-  
-	  const completeBtn = document.createElement('button');
-	  completeBtn.classList.add('complete', 'tools-btn', 'btn');
-	  completeBtn.textContent = '✅';
-  
-	  const editBtn = document.createElement('button');
-	  editBtn.classList.add('edit', 'tools-btn', 'btn');
-	  editBtn.textContent = 'EDIT';
-  
-	  const deleteBtn = document.createElement('button');
-	  deleteBtn.classList.add('delete', 'tools-btn', 'btn');
-	  deleteBtn.textContent = '❌';
-  
-	  tools.appendChild(completeBtn);
-	  tools.appendChild(editBtn);
-	  tools.appendChild(deleteBtn);
-  
-	  cell.appendChild(thing);
-	  cell.appendChild(tools);
-  
-	  todoList.appendChild(cell);
-	});
-	toggleMenuLoadPopup()
-	removeNoTaskParagraph()
-  }
 
+	if (file) {
+		const reader = new FileReader();
+		reader.onload = function (e) {
+			const jsonContent = e.target.result;
+			const data = JSON.parse(jsonContent);
+			createHTMLFromJsonData(data);
+		};
+		reader.readAsText(file);
+	}
+}
+
+function createHTMLFromJsonData(data) {
+	const todoList = document.querySelector('.todo-list');
+	deleteAllTasks();
+
+	data.tasks.forEach((task) => {
+		const cell = document.createElement('div');
+		cell.classList.add('cell');
+		cell.setAttribute('custom-id', task.id);
+
+		const thing = document.createElement('p');
+		thing.classList.add('thing');
+		thing.textContent = task.content;
+
+		const tools = document.createElement('div');
+		tools.classList.add('tools');
+
+		const completeBtn = document.createElement('button');
+		completeBtn.classList.add('complete', 'tools-btn', 'btn');
+		completeBtn.textContent = '✅';
+
+		const editBtn = document.createElement('button');
+		editBtn.classList.add('edit', 'tools-btn', 'btn');
+		editBtn.textContent = 'EDIT';
+
+		const deleteBtn = document.createElement('button');
+		deleteBtn.classList.add('delete', 'tools-btn', 'btn');
+		deleteBtn.textContent = '❌';
+
+		tools.appendChild(completeBtn);
+		tools.appendChild(editBtn);
+		tools.appendChild(deleteBtn);
+
+		cell.appendChild(thing);
+		cell.appendChild(tools);
+
+		todoList.appendChild(cell);
+		toggleMenuLoadPopup();
+	});
+}
 
 function deleteAllTasks() {
 	const allTastksToDelete = toDoList.querySelectorAll('.cell');
@@ -289,7 +287,7 @@ popupAcceptBtn.addEventListener('click', updateToDoText);
 
 menuLoadPopupBtn.addEventListener('click', toggleMenuLoadPopup);
 saveData.addEventListener('click', createJsonWithThingData);
-loadDataPopupBtn.addEventListener('click', fetchJsonFile);
+// loadDataPopupBtn.addEventListener('click', fetchJsonFile);
 // loadDataPopupBtn.addEventListener('click', toggleMenuLoadPopup);
 closeDataPopupBtn.addEventListener('click', toggleMenuLoadPopup);
 
