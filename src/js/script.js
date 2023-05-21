@@ -233,6 +233,7 @@ function loadDataFromJSON() {
 function createHTMLFromJsonData(data) {
 	const todoList = document.querySelector('.todo-list');
 	deleteAllTasks();
+	removeNoTaskParagraph()
 
 	data.tasks.forEach((task) => {
 		const cell = document.createElement('div');
@@ -249,10 +250,12 @@ function createHTMLFromJsonData(data) {
 		const completeBtn = document.createElement('button');
 		completeBtn.classList.add('complete', 'tools-btn', 'btn');
 		completeBtn.textContent = '✅';
+		completeBtn.style.margin = '0 5px 0 0px';
 
 		const editBtn = document.createElement('button');
 		editBtn.classList.add('edit', 'tools-btn', 'btn');
 		editBtn.textContent = 'EDIT';
+		editBtn.style.margin = '0 5px 0 0px';
 
 		const deleteBtn = document.createElement('button');
 		deleteBtn.classList.add('delete', 'tools-btn', 'btn');
@@ -266,8 +269,9 @@ function createHTMLFromJsonData(data) {
 		cell.appendChild(tools);
 
 		todoList.appendChild(cell);
-		toggleMenuLoadPopup();
+		
 	});
+	toggleMenuLoadPopup();
 }
 
 function deleteAllTasks() {
