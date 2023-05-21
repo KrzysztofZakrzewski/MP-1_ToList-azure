@@ -72,8 +72,6 @@ function addNewTask() {
 	removeNoTaskParagraph();
 }
 
-
-
 let counter = 1;
 function setNewNumberIdAttribute() {
 	let customId = 'custom-id';
@@ -189,29 +187,30 @@ function createJsonWithThingData() {
 	let todoList = document.querySelector('.todo-list');
 	let cells = todoList.getElementsByClassName('cell');
 	let tasks = [];
-  
+
 	for (let i = 0; i < cells.length; i++) {
-	  let taskElement = cells[i].querySelector('.thing');
-	  let customId = cells[i].getAttribute('custom-id');
-	  let task = {
-		id: customId,
-		content: taskElement.textContent,
-	  };
-	  tasks.push(task);
+		let taskElement = cells[i].querySelector('.thing');
+		let customId = cells[i].getAttribute('custom-id');
+		let task = {
+			id: customId,
+			content: taskElement.textContent,
+		};
+		tasks.push(task);
 	}
-  
+
 	let data = {
-	  tasks: tasks,
+		tasks: tasks,
 	};
-  
+
 	let jsonData = JSON.stringify(data);
-  
+
 	let fileName = 'moja_todo_lista.json';
-  
+
 	let downloadLink = document.createElement('a');
-	downloadLink.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(jsonData);
+	downloadLink.href =
+		'data:application/json;charset=utf-8,' + encodeURIComponent(jsonData);
 	downloadLink.download = fileName;
-  
+
 	downloadLink.click();
 }
 
