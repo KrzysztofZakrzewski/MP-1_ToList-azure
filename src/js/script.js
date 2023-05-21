@@ -56,6 +56,7 @@ function addNewTask() {
 	if (todoInput.value !== '') {
 		newToDo = document.createElement('div');
 		newToDo.classList.add('cell');
+		setNewNumberIdAttribute();
 
 		toDoList.append(newToDo);
 		createThinkParagraph();
@@ -69,6 +70,15 @@ function addNewTask() {
 		errorInfo.textContent = 'Enter the content of the task';
 	}
 	removeNoTaskParagraph();
+}
+
+
+
+let counter = 1;
+function setNewNumberIdAttribute() {
+	let customId = 'custom-id';
+	newToDo.setAttribute(customId, counter);
+	counter++;
 }
 
 function removeNoTaskParagraph() {
@@ -175,82 +185,35 @@ function toggleMenuLoadPopup() {
 	loadPopup.classList.toggle('load-active');
 }
 
-// function saveDataFromParagrafs() {
-// 	const paragrafs = document.querySelectorAll('.thing');
-// 	const data = [];
-
-// 	paragrafs.forEach((paragraf) => {
-// 		const content = paragraf.textContent;
-// 		const item = {
-// 			content: content,
-// 			completed: false,
-// 		};
-// 		data.push(item);
-// 	});
-
-// 	const jsonData = JSON.stringify(data);
-// 	createJSONFile(jsonData, 'azure.json');
-// }
-
-// function createJSONFile(data, fileName) {
-// 	const jsonContent = JSON.stringify(data);
-// 	const blob = new Blob([jsonContent], { type: 'application/json' });
-// 	const url = URL.createObjectURL(blob);
-
-// 	const link = document.createElement('a');
-// 	link.href = url;
-// 	link.download = fileName;
-
-// 	document.body.appendChild(link);
-// 	link.click();
-// 	document.body.removeChild(link);
-
-// 	URL.revokeObjectURL(url);
-// }
-
-// function loadDataFromJSON() {
-// 	deleteAllTasks();
-// 	const fileInput = document.getElementById('jsonFileInput');
-// 	const file = fileInput.files[0];
-
-// 	if (file) {
-// 		const reader = new FileReader();
-// 		reader.onload = function (event) {
-// 			const jsonData = event.target.result;
-// 			const data = JSON.parse(jsonData);
-// 			buildToDoList(data);
-// 		};
-// 		reader.readAsText(file);
-// 	}
-// }
-
-// function buildToDoList(data) {
-// 	const toDoList = document.querySelector('toDoList');
-
-// 	// Wyczyść istniejące zadania
-// 	// toDoList.innerHTML = '';
-
-// 	// Twórz nowe zadania na podstawie danych
-// 	data.forEach((task) => {
-// 		// Tworzenie elementów listy zadań
-// 		const newTask = document.createElement('div');
-// 		newTask.classList.add('task');
-
-// 		const content = document.createElement('p');
-// 		content.textContent = task.content;
-
-// 		const completed = document.createElement('input');
-// 		completed.type = 'checkbox';
-// 		completed.checked = task.completed;
-
-// 		// Dodawanie elementów do zadania
-// 		newTask.appendChild(content);
-// 		newTask.appendChild(completed);
-
-// 		// Dodawanie zadania do listy
-// 		toDoList.appendChild(newTask);
-// 	});
-// }
+function createJsonWithThingData() {
+	let todoList = document.querySelector('.todo-list');
+	let cells = todoList.getElementsByClassName('cell');
+	let tasks = [];
+  
+	for (let i = 0; i < cells.length; i++) {
+	  let taskElement = cells[i].querySelector('.thing');
+	  let customId = cells[i].getAttribute('custom-id');
+	  let task = {
+		id: customId,
+		content: taskElement.textContent,
+	  };
+	  tasks.push(task);
+	}
+  
+	let data = {
+	  tasks: tasks,
+	};
+  
+	let jsonData = JSON.stringify(data);
+  
+	let fileName = 'moja_todo_lista.json';
+  
+	let downloadLink = document.createElement('a');
+	downloadLink.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(jsonData);
+	downloadLink.download = fileName;
+  
+	downloadLink.click();
+}
 
 function deleteAllTasks() {
 	const allTastksToDelete = toDoList.querySelectorAll('.cell');
@@ -268,7 +231,7 @@ popupCloseBtn.addEventListener('click', closePopupFunction);
 popupAcceptBtn.addEventListener('click', updateToDoText);
 
 menuLoadPopupBtn.addEventListener('click', toggleMenuLoadPopup);
-// saveData.addEventListener('click', saveDataFromParagrafs);
+saveData.addEventListener('click', createJsonWithThingData);
 // loadDataPopupBtn.addEventListener('click', loadDataFromJSON);
 // loadDataPopupBtn.addEventListener('click', toggleMenuLoadPopup);
 closeDataPopupBtn.addEventListener('click', toggleMenuLoadPopup);
