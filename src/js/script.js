@@ -165,6 +165,106 @@ function addNoTaskParagrph() {
 	}
 }
 
+function toggleMenuLoadPopup() {
+	loadPopup.classList.toggle('load-active');
+}
+
+function createJsonWithThingData() {
+	let todoList = document.querySelector('.todo-list');
+	let cells = todoList.getElementsByClassName('cell');
+	let tasks = [];
+
+	for (let i = 0; i < cells.length; i++) {
+		let taskElement = cells[i].querySelector('.thing');
+		let customId = cells[i].getAttribute('custom-id');
+		let task = {
+			id: customId,
+			content: taskElement.textContent,
+		};
+		tasks.push(task);
+	}
+
+	let data = {
+		tasks: tasks,
+	};
+
+	let jsonData = JSON.stringify(data);
+
+	let fileName = 'azure_todo_list.json';
+
+	let downloadLink = document.createElement('a');
+	downloadLink.href =
+		'data:application/json;charset=utf-8,' + encodeURIComponent(jsonData);
+	downloadLink.download = fileName;
+
+	downloadLink.click();
+}
+
+function loadDataFromJSON() {
+	const fileInput = document.getElementById('loadToDoListFromJsonData');
+	const file = fileInput.files[0];
+
+	if (file) {
+		const reader = new FileReader();
+		reader.onload = function (e) {
+			const jsonContent = e.target.result;
+			const data = JSON.parse(jsonContent);
+			createHTMLFromJsonData(data);
+		};
+		reader.readAsText(file);
+	}
+}
+
+function createHTMLFromJsonData(data) {
+	const todoList = document.querySelector('.todo-list');
+	deleteAllTasks();
+	removeNoTaskParagraph();
+
+	data.tasks.forEach((task) => {
+		const cell = document.createElement('div');
+		cell.classList.add('cell');
+		cell.setAttribute('custom-id', task.id);
+
+		const thing = document.createElement('p');
+		thing.classList.add('thing');
+		thing.textContent = task.content;
+
+		const tools = document.createElement('div');
+		tools.classList.add('tools');
+
+		const completeBtn = document.createElement('button');
+		completeBtn.classList.add('complete', 'tools-btn', 'btn');
+		completeBtn.textContent = '✅';
+		completeBtn.style.margin = '0 5px 0 0px';
+
+		const editBtn = document.createElement('button');
+		editBtn.classList.add('edit', 'tools-btn', 'btn');
+		editBtn.textContent = 'EDIT';
+		editBtn.style.margin = '0 5px 0 0px';
+
+		const deleteBtn = document.createElement('button');
+		deleteBtn.classList.add('delete', 'tools-btn', 'btn');
+		deleteBtn.textContent = '❌';
+
+		tools.appendChild(completeBtn);
+		tools.appendChild(editBtn);
+		tools.appendChild(deleteBtn);
+
+		cell.appendChild(thing);
+		cell.appendChild(tools);
+
+		todoList.appendChild(cell);
+	});
+	toggleMenuLoadPopup();
+}
+
+function deleteAllTasks() {
+	const allTastksToDelete = toDoList.querySelectorAll('.cell');
+	if (allTastksToDelete.length !== 0) {
+		allTastksToDelete.forEach((task) => task.remove());
+	}
+}
+
 addFifo();
 
 container.addEventListener('click', clickCheck);
