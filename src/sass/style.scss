@@ -19,6 +19,11 @@ h1 {
 
 .btn {
 	cursor: pointer;
+	transition: background-color .1s;
+}
+
+.btn:hover{
+	background-color: rgba(255, 255, 255, 0.342)
 }
 
 .container {
