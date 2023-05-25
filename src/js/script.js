@@ -116,7 +116,6 @@ function clickCheck(e) {
 	if (e.target.matches('.complete')) {
 		let thing = e.target.closest('.cell').querySelector('.thing');
 		thing.classList.toggle('completed');
-		console.log(e.target);
 	} else if (e.target.matches('.edit')) {
 		editToDoTask(e);
 	} else if (e.target.matches('.delete')) {
@@ -162,7 +161,6 @@ function addNoTaskParagrph() {
 	let noTaskParagrph = document.querySelector('.no-task-paragrph');
 
 	const allTask = toDoList.querySelectorAll('.cell');
-	console.log(allTask);
 	if (allTask.length === 0) {
 		noTaskParagrph = document.createElement('p');
 		noTaskParagrph.classList.add('no-task-paragrph');
