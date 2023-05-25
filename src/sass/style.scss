@@ -42,8 +42,8 @@ h1 {
 		align-items: center;
 
 		.menu-btn {
-			margin-left: 20px;
-			padding: 10px 22px;
+			margin-left: 15px;
+			padding: 10px 10px;
 			border: none;
 			border-radius: 5px;
 		}
@@ -206,6 +206,43 @@ h1 {
 		}
 	}
 
+
+
+	.load-popup {
+		display: none;
+		position: fixed;
+		width: 82%;
+		height: 150px;
+		// display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		inset: 0;
+		margin: auto;
+		background-color: rgb(130, 134, 150);
+
+		.inpul-loader {
+			padding: 10px 20px;
+			background-color: #f0f0f0;
+			border-radius: 10px;
+			margin: 10px;
+		}
+
+		.load-pupup-btnholder{
+
+			.load-data-popup-btn, .close-data-popup-btn{
+				padding: 10px 20px;
+				border: none;
+				border-radius: 10px;
+			}
+		}
+
+	}
+
+	.load-active{
+		display: flex;
+	}
+
 	.discription {
 		// position: relative;
 		position: fixed;
@@ -324,6 +361,10 @@ h1 {
 			}
 		}
 		.popup {
+			width: 800px;
+		}
+
+		.load-popup {
 			width: 800px;
 		}
 		.discription {

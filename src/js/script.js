@@ -22,6 +22,12 @@ let todoInput = document.querySelector('.todo-input');
 const toDoList = document.querySelector('.todo-list');
 const errorInfo = document.querySelector('.error-info');
 
+const openLoadMenuBtn = document.querySelector('.load');
+const loadPopup = document.querySelector('.load-popup');
+const loadDataPopupBtn = document.querySelector('.load-data-popup-btn');
+const closeDataPopupBtn = document.querySelector('.close-data-popup-btn');
+const saveToDoList = document.querySelector('.save')
+
 // let noTaskParagrph  = document.querySelector('.no-task-paragrph');
 
 function showDiscription() {
@@ -255,7 +261,6 @@ function createHTMLFromJsonData(data) {
 
 		todoList.appendChild(cell);
 	});
-	toggleMenuLoadPopup();
 }
 
 function deleteAllTasks() {
@@ -272,4 +277,9 @@ BurgerBtn.addEventListener('click', showDiscription);
 discriptionBtn.addEventListener('click', showDiscription);
 popupCloseBtn.addEventListener('click', closePopupFunction);
 popupAcceptBtn.addEventListener('click', updateToDoText);
+openLoadMenuBtn.addEventListener('click', toggleMenuLoadPopup);
+loadDataPopupBtn.addEventListener('click', loadDataFromJSON);
+loadDataPopupBtn.addEventListener('click', toggleMenuLoadPopup);
+closeDataPopupBtn.addEventListener('click', toggleMenuLoadPopup);
+saveToDoList.addEventListener('click', createJsonWithThingData)
 document.addEventListener('DOMContentLoaded', main);
